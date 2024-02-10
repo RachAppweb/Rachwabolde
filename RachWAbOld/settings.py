@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-from decouple import config
+
 from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
@@ -18,9 +18,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'django-insecure-y@qg)q6%g!+7(4#cbvroo^k&p4qy9wp6x=7n2^fs9!40nstv$_'
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG',cast=bool)
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 # Application definition
 INSTALLED_APPS = [
@@ -76,7 +77,7 @@ AUTH_USER_MODEL = 'accounts.Account'
 
 DATABASES = {
     'default': {
-        'ENGINE': config('ENGINE'),
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
 }}
 # DATABASES = {
@@ -134,9 +135,8 @@ MESSAGE_TAGS = {
     messages.ERROR: "danger",
 }
 #  the smtp and email configuration
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT =config('EMAIL_PORT',cast=int)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD =config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS',cast=bool)
-SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'rachwabold@gmail.com'
+EMAIL_HOST_PASSWORD = 'wkxubmfriixccdlk'
+EMAIL_USE_TLS = True
