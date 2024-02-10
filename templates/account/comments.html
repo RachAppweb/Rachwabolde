@@ -1,0 +1,123 @@
+<!-- /////////////////// -->
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+<link rel="stylesheet" href="{% static 'css/comm.css' %}">
+{% endblock %}
+
+{% block title %}
+  Comments and Rating
+{% endblock %}
+
+{% block content %}
+<div id="allthing">
+  
+  {% include 'includes/alerts.html' %}
+  {% if user.is_authenticated and user.is_active%}
+  <div class="col-md-12" id="allrev">
+    <form action="{% url 'comments' %}" method="POST">
+      {% csrf_token %}
+      <h5 style="font-family: Tajawal;">أطلعنا برأيك وتقيمك لخدمتنا</h5>
+      <div class="rate">
+        <input type="radio" name="rating" id="rating5" value="5" required /><label for="rating5" title="5"></label>
+        <input type="radio" name="rating" id="rating4" value="4" required /><label for="rating4" title="4"></label>
+        <input type="radio" name="rating" id="rating3" value="3" required /><label for="rating3" title="3"></label>
+        <input type="radio" name="rating" id="rating2" value="2" required /><label for="rating2" title="2"></label>
+        <input type="radio" name="rating" id="rating1" value="1" required /><label for="rating1" title="1"></label>
+      </div>
+      <div class="review-body mt-2" id="texarea">
+        <textarea name="review" rows="4" class="form-control"placeholder="أضف تعليقك أو إقترح منتوج " style=" font-family: Tajawal;direction: rtl;resize: none;"></textarea>
+        <br>
+        <button type="submit" id="buton" class="btn btn-primary"style="font-family: Tajawal;">أنشر رأيك</button>
+      </div>
+      
+    </form>
+  </div>
+  {% else %}
+  <div id="annon">
+  <b id="texto" style="font-family: Tajawal;"> المرجو إنشاء حساب أو تسجيل الدخول إذا كان لديك , لتتمكن من إطلاعنا برأيك  وشكرا</b>
+</div>
+  {% endif%}
+  <hr style="margin-top: 40px;">
+
+  <b style="font-family: Tajawal;"> ({{ count }}) أراء</b>
+
+  {% for comm in comment %}
+  <div id="comentess" class="comentess mt-5 ms-3 mb-5">
+    <div class="mb-4" style="max-width: 600px !important; display: flex; margin-right: 3px !important;">
+      <div style="width: 14%; margin-right: 3px !important;">
+        {% if comm.user.userprofile.profil_picture%}
+              <img id="imgofcoment" style="border-radius: 50%; float: left;" src="{{comm.user.userprofile.profil_picture.url}}" width="50px" height="50px" alt="">
+              {%else%}
+              <img id="imgofcoment" style="border-radius: 50%; float: left;" src="{%static 'img/undraw_profile.svg'%}" width="50px" height="50px" alt="">
+              {% endif%}
+      </div>
+      <div class="p-1" style="width: 86%; background-color: #ddd; border-radius: 3px;">
+        <span class="float-md-right" id="comstar">
+          <i class="fa fa-star {% if comm.rating > 4 %}checked{% endif %}" style="float: right;" aria-hidden="true"></i>
+          <i class="fa fa-star {% if comm.rating > 3 %}checked{% endif %}" style="float: right;" aria-hidden="true"></i>
+          <i class="fa fa-star {% if comm.rating > 2 %}checked{% endif %}" style="float: right;" aria-hidden="true"></i>
+          <i class="fa fa-star {% if comm.rating > 1 %}checked{% endif %}" style="float: right;" aria-hidden="true"></i>
+          <i class="fa fa-star {% if comm.rating > 0 %}checked{% endif %}" style="float: right;" aria-hidden="true"></i>
+        </span>
+        <p id="usernameofcoment" style="margin-bottom: -2px; font-weight: bold;">
+          <i class="fas fa-user"></i>{{ comm.user.fullname }}
+        </p>
+        <p class="p-1" id="paraofcoment"style="font-family: Tajawal;">
+          {{ comm.review }}
+        </p>
+        {% if comm.adminresponse%}
+        <span class="reply-button" style="float:left ;margin-left:3px" > <b style="color:rgb(84, 84, 226)"> RachWAbOld </b> <i class="fas fa-chevron-down"></i></span>
+        {% endif %}
+        <span style="float: right;" class="reply-button"><i class="fas fa-clock"></i> <i>{{ comm.updated_at }}</i></span>
+        <i class="fas fa-down"></i>
+
+        {% if comm.adminresponse %}
+        <div class="reply-form-container" style="display: none;">
+          <div class="mb-4" style="max-width: 400px !important; display: flex; margin-right: 3px !important;">
+            <div style="width: 14%; margin-right: 3px !important;">
+              <img id="imgofcoment" style="border-radius: 50%; float: left;" src="{%static 'img/rachwaboldicon-min.png'%}" width="50px" height="50px" alt="">
+            </div>
+            <div class="p-1" style="width: 86%; background-color: #ddd; border-radius: 3px;">
+              <p id="usernameofcoment" style="margin-bottom: -2px; font-weight: bold;">
+                RachwAbOld
+              </p>
+              <p class="p-1" id="paraofcoment" style="color: blue;font-family: Tajawal;">
+                {{comm.adminresponse}}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <br>
+  {% endfor %}
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.reply-button').click(function() {
+        $(this).closest('.comentess').find('.reply-form-container').slideToggle();
+      });
+    });
+  </script>
+</div>
+
+{% include 'includes/fotter.html'%}
+{% endblock %}
+
+
+
+
+
+
+
+<!-- //////////////////////// -->
+

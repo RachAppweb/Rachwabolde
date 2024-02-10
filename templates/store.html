@@ -1,0 +1,169 @@
+
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/count_store.css' %}">
+{% endblock%}
+{% block title%}
+ المتجر
+{% endblock%}
+{% block drop%}
+{% include 'includes/drop.html'%}
+{% endblock%}
+{% block search%}
+{% include 'includes/search.html'%}
+{% endblock %}
+{% block content%}
+    <!-- background -->
+    {% if banners%}
+    <div 
+    id="background">
+    
+
+
+<div class="slideshow-container">
+{% for baneer in banners%}
+<div class="mySlides fadeo">
+  <!-- <div class="numbertext">1 / 3</div> -->
+  <img src="{{baneer.images.url}}" style="width:-webkit-fill-available;height:277px">
+  <!-- <div class="text">Caption Text</div> -->
+</div>
+{% endfor%}
+
+
+
+
+</div>
+<br>
+
+<div style="text-align:center;display:none" >
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
+    </div>
+{% endif%}
+<!-- --------- -->
+
+
+
+
+
+
+<!-- ------- -->
+
+    <br>
+    <!-- Category -->
+    <div class="parent " style="display: flex; " >
+      <div id="sheld1" class="sheld1 me-2 " style="width: 30%;" >
+        <!-- <select class="celect text-primary" name="Category" value="Category"  id=""style="margin-left: 4px;width: 80%;text-align: center;">
+          <option value="1" disabled selected>Category</option>
+          
+          <a href="#"  ></a>
+          
+        </select> -->
+        
+        {% if products%}
+        <div id="ocard" class="card  mb-5" style="margin-left: 4px;width: 80%;text-align: center;    height: 95%; ">
+          
+          <div class="card-body" id="cbody">
+            <p class="card-text" id="othercard" style="font-family: 'Tajawal';"><b>ملاحضة :</b> استفد من توصيل واحد محدد! قم بإضافة المزيد من المنتجات إلى عربة التسوق الخاصة بك للاستفادة من توصيل واحد بثمن ثابت. بدلاً من دفع تكاليف الشحن لكل منتج بشكل منفصل، يمكنك الحصول على جميع مقتنياتك المختلفة مجتمعة في شحنة واحدة بتكلفة توصيل واحدة فقط. هذا يوفر لك المال ويجعل تجربة التسوق لدينا أكثر فعالية ومرونة  </p>
+            
+            
+          </div>
+        </div> 
+        {% endif%}
+      </div>
+      <!-- Products(00) -->
+      <div id="sheld2" class="sheld2 "style="width: 70%;">
+        <div  style="text-align: center;">
+          <h6 class="" style="display: inline-block;font-family: Tajawal;">  عناصر ({{product_count}})</h6>
+        </div>
+        <br>
+        <div class="cards" style="display: flex;flex-wrap: wrap;justify-content: space-around; ">
+          <!-- card -->
+          {% if products%}
+          {% for product in products%}
+          <div id="card" class="card  mb-5" style="width: 15rem;">
+            <a href="{{product.get_pro_url}}"><img src="{{product.image.url}}" width="200" height="170" class="card-img-top" id="cardimgtop" alt="..."></a>
+            <div class="card-body">
+              <a href="{{product.get_pro_url}}" class="card-text" id="textofcard" style="text-decoration: none;font-family: Tajawal;">{{product.prouduct_name}}</a>
+              <hr id="betwen">
+              
+              <a href="{{product.get_pro_url}}" class="btn btn-outline-primary"id="greenbtn" style="float: left;"> <span style="font-family: Tajawal;">أنضر</span> <i class="fas fa-eye"></i> </a>
+             
+            
+              <span class="text-success mt-1" id="spann" style="float: right;">{{product.price}}$</span>
+            </div>
+          </div> 
+          {% endfor%}
+          {% else%}
+               {% if 'search' in request.get_full_path %}
+               <h3 onload="notfound()" id="nosearch"></h3>
+               {% else%}
+              <h3 id="noavalabel"style="font-family: Tajawal;">لا توجد منتجات</h3>
+                {% endif%}
+          {%endif%}
+
+
+        </div>
+          
+  <nav aria-label="Page navigation example" style="align-items:center">
+    {%if products.has_other_pages%}
+    <ul class="pagination"id="pagination">
+      {% if products.has_previous%}
+      <li class="page-item"><a class="page-link" href="?page={{products.previous_page_number}}"style="font-family: Tajawal;">السابق</a></li>
+      {% else%}
+      <li class="page-item disabled"><a class="page-link" href="#"style="font-family: Tajawal;">السابق</a></li>
+      {% endif%}
+      {% for i in products.paginator.page_range%}
+          {% if products.number == i%}
+      <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+      {% else%}
+      <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+      {% endif%}
+     {% endfor%}
+     {% if products.has_next%}
+      <li class="page-item"><a class="page-link" href="?page={{products.next_page_number}}"style="font-family: Tajawal;">التالي</a></li>
+      {% else%}
+      <li class="page-item disabled"><a class="page-link" href="#"style="font-family: Tajawal;">التالي</a></li>
+      {% endif%}
+    </ul>
+    {% endif%}
+  </nav>
+<!-- </nav> -->
+          
+     </div>
+    </div>
+    
+
+    
+    <script>
+      
+      showSlides();
+
+      function showSlides() {        
+        var slideIndex = 0;
+var slides = document.getElementsByClassName("mySlides");
+// Hide all slides except the first one
+for (var i = 1; i < slides.length; i++) {
+  slides[i].style.display = "none";
+}
+setInterval(function () {
+  // Hide current slide
+  slides[slideIndex].style.display = "none";
+
+  // Increment slide index
+  slideIndex++;
+  if (slideIndex >= slides.length) {
+    slideIndex = 0;
+  }
+  // Show next slide
+  slides[slideIndex].style.display = "block";
+}, 6000); // Change slide every 4 seconds (4000 milliseconds)
+      }
+    </script>
+{% include 'includes/fotter.html'%}
+{% endblock%} 
+<!------------- Footer ----------->
+  

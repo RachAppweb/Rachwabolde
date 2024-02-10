@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+{% endblock%}
+{% block title%}
+   لست مصرح للوصول
+{% endblock%}
+{% block content%}
+<div id="con">
+<img id="rotate" src="{% static 'img/rachwaboldicon-min.png'%}" alt="" width="100" height="100" style="margin-top: 23px;">
+<div class="card" id="cwird">
+    <p style="font-weight: bolder;font-family:Tajwawl;">
+        عذرا ليس لديك الإذن الكافي للوصول إلى هذه الموارد المرجو الضغط على زر العودة إلى الصفحة الرئيسية أسفله أو على زر الرجوع في متصفحك 
+    </p>
+    <a href="{% url 'home'%}"style="font-weight: bolder;font-family:Tajwawl;max-width: fit-content;margin: auto;" class="btn btn-primary ">  العودة إلى الصفحة الرئيسية</a>
+    </div>
+</div>
+
+{% include 'includes/fotter.html'%}
+{% endblock %}

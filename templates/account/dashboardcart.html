@@ -1,0 +1,59 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+<link rel="stylesheet" href="{% static 'css/stayling.css' %}" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% endblock%}
+{% block title%}
+ Dashboard Cart
+{% endblock%}
+{% block content%}
+
+<div id="divo">
+
+    <input type="checkbox" id="mobile-menu" />
+
+    <div class="sidebar">
+      <div class="logo">
+        <i class="fa fa-shopping-bag"></i>
+        <h2>{{user.first_name}}</h2>
+      </div>
+      <div class="menu">
+        <ul>
+            {% include 'includes/sidebar.html'%}
+        </ul>
+      </div>
+    </div>
+
+    <label for="mobile-menu" id="mmenu">
+      <i class="fa fa-bars"></i>
+      <i class="fa fa-times"></i>
+    </label>
+
+    <div class="content">
+      <div class="top">
+        <!-- <div class="search">
+          <input type="text" placeholder="Search Product" />
+          <i class="fa fa-search"></i>
+        </div> -->
+        <div class="user">
+          <!-- <i class="fas fa-wallet"></i>
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+          <label style="position: relative">
+            <i id="bell" class="fa fa-bell" aria-hidden="true"></i>
+          </label> -->
+
+          <span> <img src="{%static 'img/undraw_profile.svg'%}" alt="" height="40px" width="40px"> {{user.fullname}}</span>
+          <!-- <i class="fas fa-chevron-down"></i> -->
+        </div>
+      </div>
+
+      <h2 id="heading">Cart</h2>
+      
+
+     
+    </div>
+</div>
+{% include 'includes/fotter.html'%}
+{% endblock%}

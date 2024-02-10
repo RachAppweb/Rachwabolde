@@ -1,0 +1,17 @@
+asgiref==3.6.0
+asyncpg==0.27.0
+Django==3.2
+django-admin-honeypot==1.1.0
+django-admin-thumbnails==0.2.8
+django-ranged-response==0.2.0
+django-simple-captcha==0.5.18
+gunicorn==21.0.1
+packaging==23.1
+Pillow==9.5.0
+psycopg2==2.9.6
+python-decouple==3.8
+pytz==2023.3
+six==1.16.0
+sqlparse==0.4.4
+tzdata==2023.3
+whitenoise==6.5.0

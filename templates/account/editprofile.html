@@ -1,0 +1,122 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+<link rel="stylesheet" href="{% static 'css/stayling.css' %}" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% endblock%}
+{% block title%}
+تعديل الصفحة الشخصية
+{% endblock%}
+{% block content%}
+
+<div id="divo">
+
+    <input type="checkbox" id="mobile-menu" />
+
+    {% include 'includes/sidebar.html'%}
+    <label for="mobile-menu" id="mmenu">
+      <i class="fa fa-bars"></i>
+      <i class="fa fa-times"  style="    margin-top: -28px !important;margin-left: -14px !important;border: 3px solid black;border-radius: 12px;padding: 5px;"></i>
+    </label>
+    <div class="content">
+      <h2 id="heading" style="text-align: center; font-family:Tajawal;color: #174ae2"> تعديل الصفحة الشخصية</h2>
+      <div class="card mx-auto " style="margin-top: 27px;margin-bottom: 27px; max-width:500px; box-shadow: 1px 1px 5px 1px rgb(175,168,168);" >
+        <div class="card-body" >
+         
+          <form action="{% url 'editprofile'%}" method="POST" enctype="multipart/form-data">
+            {% csrf_token%}
+            <div >
+              <label for="recipient-name" class="col-form-label"style="font-family:Tajawal;">الإ سم الأول</label>
+              <span class="input-group-text" id="basic-addon1"></i>
+              {{user_form.first_name}}
+              </span>
+            </div>
+            <div >
+              <label for="recipient-name" class="col-form-label"style="font-family:Tajawal;">الإسم العائلي</label>
+
+              <span class="input-group-text" id="basic-addon1"></i>
+              {{user_form.last_name}}
+              </span>
+            </div>
+            <div >
+              <label for="recipient-name" class="col-form-label"style="font-family:Tajawal;">البريد الإلكتروني</label>
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-at" style="margin-right: 1px;"></i> 
+        
+                {{user_form.email}}
+                
+              </span>
+             
+            </div>
+            <div >
+              
+              <label for="recipient-name" class="col-form-label"style="font-family:Tajawal;">رقم الهاتف</label>
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"style="margin-right: 1px;"></i> 
+        
+                {{user_form.phone_number}}
+                <!--  -->
+              </span>
+              
+            </div>
+            <div >
+              <label for="recipient-name" class="col-form-label"style="font-family:Tajawal;">الصورة الشخصية</label>
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-file"style="margin-right: 1px;"></i> 
+                   
+                {{profile_form.profil_picture}}
+              </span>
+            </div>
+            <div >
+              <label for="message-text" class="col-form-label"style="font-family:Tajawal;">العنوان الأول</label>
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"style="margin-right: 1px;"></i> 
+            
+                {{profile_form.address_line_1}}
+              
+              </span>
+            </div>
+            <div>
+              <label for="message-text" class="col-form-label"style="font-family:Tajawal;">العنوان الثاني</label>
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-address"style="margin-right: 1px;"></i> 
+              
+                {{profile_form.address_line_2}}
+              </span>
+            </div>
+            <div>
+                <label for="message-text" class="col-form-label"style="font-family:Tajawal;">الدولة</label>
+                <span class="input-group-text" id="basic-addon1"> 
+                
+                    {{profile_form.country}}
+                </span>
+              </div>
+              <div>
+                <label for="message-text" class="col-form-label"style="font-family:Tajawal;">الحي</label>
+                <span class="input-group-text" id="basic-addon1"> 
+                
+                    {{profile_form.state}}
+                </span>
+              </div>
+              <div>
+                <label for="message-text" class="col-form-label"style="font-family:Tajawal;">المدينة</label>
+                <span class="input-group-text" id="basic-addon1"> 
+                
+                    {{profile_form.city}}
+                </span>
+              </div>
+              
+            <!-- <div >
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+              <button type="submit" class="btn btn-primary" >Log in</button>
+            </div> -->
+             
+          <button type="submit" class="btn  text-center" style="width:fit-content;width: -webkit-fill-available;margin-top: 15px; font-family:Tajawal; background: #174ae2;color:white">حفظ</button>
+          
+          </form>
+        </div>
+      </div>
+      
+     
+
+     
+    </div>
+</div>
+{% include 'includes/fotter.html'%}
+{% endblock%}

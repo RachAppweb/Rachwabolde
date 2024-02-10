@@ -1,0 +1,104 @@
+
+{% load static%}
+
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        
+      </section>
+
+      <section class="mb-4">
+        <span style="font-family: 'Tajawal';font-weight: bolder;">
+           
+           خلال تصفحك موقعنا قد تواجه بعض الصعوبات في التصفح المتعارف عليها في جميع المواقع المتداولة , لذالك قمنا بوضع حلول لتلك الصعوبات أسفله , من بينها كيفية الإستعمال
+           <p> ...او تعديل معلوماتك الشخصية </p>
+        </span>
+      </section>
+      <!-- Section: Text -->
+  
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row" style="display: flex;justify-content: space-between;" >
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase" style="font-family: Tajawal;font-weight:bolder">الأيقونات</h5>
+  
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="https://www.flaticon.com/authors/pixel-perfect" class="text-white" style="text-decoration: none;">Pixel Perfect</a>
+              </li>
+              
+            </ul>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase"style="font-family: Tajawal;font-weight:bolder">صفحات</h5>
+  
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="{% url 'comments'%}" class="text-white"style="text-decoration: none;">التعاليق</a>
+              </li>
+              <li>
+                <a href="{% url 'store'%}" class="text-white"style="text-decoration: none;"> المتجر</a>
+              </li>
+              
+            </ul>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase"style="font-family: Tajawal;font-weight:bolder">مساعدة</h5>
+  
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="{% url 'usage'%}" class="text-white"style="text-decoration: none;">كيفية الإستعمال</a>
+              </li>
+              <li>
+                <a href="{% url 'editprofile'%}" class="text-white"style="text-decoration: none;"> تعديل الملف الشخصي </a>
+              </li>
+              <li>
+                <a href="{% url 'resetpassworddasboard'%}" class="text-white"style="text-decoration: none;"> تعديل كلمة السر </a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase"style="font-family: Tajawal;font-weight:bolder">فريق الدعم</h5>
+  
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="https://www.facebook.com/profile.php?id=100036547980205" class="text-white"style="text-decoration: none;"> حسابنا على فيسبوك</a>
+              </li>
+              <li>
+                <a href="mailto:rachidmayene@gmail.com" class="text-white"style="text-decoration: none;"> بريدنا الإلكتروني</a>
+              </li>
+              
+            </ul>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+    </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+       Copyright:
+      <a class="text-white" href="https://rachwabold.com/">RachWAbOld.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{% static 'js/second.js'%}"></script>
+  <script src="{% static 'js/main.js'%}"></script>
+  

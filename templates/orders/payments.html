@@ -1,0 +1,215 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+{% endblock%}
+{% block title%}
+ دفع
+{% endblock%}
+{% block content%}
+
+
+
+<section class="section-content padding-y bg" style="    margin-bottom: 24px;">
+	<div class="container">
+
+		<!-- ============================ COMPONENT 1 ================================= -->
+		<h4 class="text-center mb-20 fw-bold" id="titlo"style="font-family: Tajawal">راجع طلبك وقم بالدفع</h4>
+		<div class="row">
+
+			<aside class="col-lg-8">
+				<div class="card" style="box-shadow: 1px 1px 5px 1px rgb(175,168,168);">
+					<h5 class="card-header fw-bold" id="caheader" style="font-family: Tajawal">عنوان التوصيل</h5>
+					<div class="card-body">
+						<p class="card-text mb-0">{{order.fullname}}</p>
+						<p class="card-text mb-0">{{order.fulladdress}}</p>
+						<p class="card-text mb-0">{{order.city}}, {{order.state}}</p>
+						<p class="card-text mb-0">{{order.country}}</p>
+						<p class="card-text mb-0">{{order.email}}</p>
+						<p class="card-text mb-0">{{order.phone_number}}</p>
+						
+
+
+					</div>
+				</div>
+				<div class="card" style="box-shadow: 1px 1px 5px 1px rgb(175,168,168);">
+					<h5 class="card-header fw-bold" id="caheader" style="font-family: Tajawal">وسيلة الدفع</h5>
+					<div class="card-body">
+						<p class="card-text">PayPal</p>
+
+					</div>
+				</div>
+				<div class="card" style="box-shadow: 1px 1px 5px 1px rgb(175,168,168);">
+					<h5 class="card-header fw-bold" id="caheader" style="font-family: Tajawal">مراجعة المنتج</h5>
+					<div class="card-body">
+						<table class="table table-borderless table-shopping-cart">
+							<thead class="text-muted">
+								<tr class="small text-uppercase">
+									<th scope="col" style="font-family: Tajawal">المنتج</th>
+									<th scope="col" width="120" style="font-family: Tajawal">الكمية</th>
+									<th scope="col" width="120" style="font-family: Tajawal">الثمن</th>
+
+								</tr>
+							</thead>
+							<tbody>
+
+								{% for cart_item in cart_itemes%}
+								<tr>
+									<td>
+										<figure class="itemside align-items-center" id="labelleft1" style="margin-top: auto;">
+											<div class="aside"><img src="{{cart_item.product.image.url}}" class="img-sm" id="img-sm"></div>
+											<figcaption class="info">
+												<a href="#" class="title text-dark"style="text-decoration: none;font-family: Tajawal"> {{cart_item.product.prouduct_name}} </a>
+												
+											</figcaption>
+										</figure>
+									</td>
+									<td>
+										<!-- col.// -->
+										<label for=""id="labelright2">{{cart_item.quantity}}</label>
+									</td>
+									<td>
+										<div class="price-wrap">
+											<var class="price">{{cart_item.sub_total}} $</var>
+											<!-- <small class="text-muted"> $ 12 each </small> -->
+										</div> <!-- price-wrap .// -->
+									</td>
+
+								</tr>
+								{% endfor%}
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+
+			</aside> <!-- col.// -->
+			<aside class="col-lg-4">
+
+				<div class="card"style="box-shadow: 1px 1px 5px 1px rgb(175,168,168);">
+					<div class="card-body">
+						<dl class="dlist-align">
+							<dt style="font-family: Tajawal">السعر الكلي:</dt>
+							<dd class="text-right"> {{total}} $</dd>
+						</dl>
+						<dl class="dlist-align">
+							<dt style="font-family: Tajawal">التوصيل:</dt>
+							<dd class="text-right">  {{deliver}} $</dd>
+						</dl>
+						<dl class="dlist-align">
+							<dt style="font-family: Tajawal">المجموع النهائي:</dt>
+							<dd class="text-right text-dark b"><strong id="amounte"> {{finaltotal}} $</strong></dd>
+						</dl>
+						<hr>
+						<p class="text-center mb-3">
+							<img src="{% static 'img/payment-card.png' %}" height="26">
+						</p>
+
+                         <!-- paypal integration -->
+						<div id="paypal-button-container"></div>
+                      <!-- paypal integration -->
+					</div> <!-- card-body.// -->
+				</div> <!-- card.// -->
+				
+			</aside> <!-- col.// -->
+
+
+		</div> <!-- row.// -->
+
+		<!-- ============================ COMPONENT 1 END .// ================================= -->
+
+	</div> <!-- container .//  -->
+</section>
+
+
+<script>
+    //csrf token generator by django
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    
+    //csrf token end
+    // Render the PayPal button into #paypal-button-container
+    //document.getElementById('amounte').value
+    var amounte = '{{finaltotal}}'
+    let urle=`{% url 'payments'%}`
+    let csrftoken = getCookie('csrftoken');
+    let orderId='{{order.order_number}}'
+    let payment_methode='PayPal'
+	let invoice=`{% url 'invoice'%}`
+    paypal.Buttons({
+        
+        style: {
+            color: 'blue',
+            shape:'rect',
+            label:'pay',
+
+
+         },
+         
+        // Call your server to set up the transaction
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units:[{
+                    amount:{
+                        value:amounte
+                    }
+                }]
+            })
+        },
+
+        // Call your server to finalize the transaction
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details){
+                console.log(details)
+				loader(true)
+                sendData();
+                function sendData(){
+                    fetch(urle,{
+                        method:'POST',
+                        headers:{
+                            'Content-type':'application/json',
+                            'X-CSRFToken':csrftoken
+                        },
+                        body:JSON.stringify({
+                          orderid:orderId,
+                          transId:details.id,
+                          payment_method:payment_methode,
+                          status:details.status,
+                          payer_name:details.payer.name.given_name,
+                          payer_surname:details.payer.name.surname,
+						  amount_paid:amounte
+
+
+                        }),
+						
+                    }).then((response)=>response.json()).then((data)=>{
+						
+						loader(true)
+					window.location.href=invoice+`?order_number=${data.order_number}&transId=${data.trnasId}`
+					})
+                }
+                //alert('transaction completed by '+details.payer.name.given_name+ '!');
+            })
+            }}).render('#paypal-button-container');
+        
+
+   
+</script>
+
+{% include 'includes/fotter.html'%}
+
+{% endblock%}

@@ -1,0 +1,13 @@
+{% autoescape off %}
+ مرحبا {{user.first_name}}
+
+ 
+لقد توصلنا بطلبك بنجاح
+ 
+ معلومات طلبك هي كالتالي :
+ {% for item in cart_item%}
+ إسم المنتج : {{item.product.prouduct_name}}
+ الكمية : {{item.quantity}}
+ الثمن : {{item.sub_total}}
+{% endfor%}
+{% endautoescape %}

@@ -1,0 +1,25 @@
+
+{% load static%}
+          
+        </ul><div class="sidebar">
+          
+          <div class="logo">
+            <!-- <i class="fa fa-shopping-bag"></i> -->
+            
+            <span style="display: flex;margin-left: -15px;font-size: x-large; padding-top:30px">  {% if user.userprofile.profil_picture %}<img src="{{user.userprofile.profil_picture.url}}" alt="" height="40" width="40" class="rounded">{%else%}<img src="{% static 'img/undraw_profile.svg'%}" alt="" height="40" width="40" class="rounded">{% endif %} <b style="margin-left: 10px;">{{user.first_name}} </b> </span>
+            
+          </div>
+          <div class="menu"style="    height: fit-content;">
+            <ul>
+              <li id="dna" class="{% if 'dashboard' in request.path %} active{%endif%}"><i class="fa fa-home"></i><a href="{% url 'dashboard'%}" style="text-decoration: none;"> <b style="font-family:Tajawal;">  القائمة </b></a> </li>
+          <!-- <li><i class="fa fa-shopping-basket"></i> Categories</li> -->
+          <!-- <li><i class="fa fa-wallet"></i> Wallet</li> -->
+          <li id="dna" class="{% if 'resetpassworddasboard' in request.path %} active{%endif%}"><i class="fa fa-lock"></i> </i><a href="{% url 'resetpassworddasboard'%}" style="text-decoration: none;"> <b style="font-family:Tajawal;"> تغيير كلمة السر </b> </a></li>
+          
+          <li id="dna" class="{% if 'editprofile' in request.path %} active{%endif%}"><i class="fa fa-user"></i> </i><a href="{% url 'editprofile'%}" style="text-decoration: none;"> <b style="font-family:Tajawal;"> تعديل الصفحة الشخصية </b> </a></li>
+          <li  id="dna" ><i class="fa fa-sign-out"></i> <a href="" data-bs-toggle="modal" data-bs-target="#LogoutModale" data-bs-whatever="@fat" style="text-decoration: none; "> <b style="font-family:Tajawal;"> تسجيل الخروج </b> </a> </li>
+          <li id="dna"  style="display:none;"><i class="fa fa-shopping-cart" ></i> </i><a href="#" style="text-decoration: none;">Cart</a></li>
+            </ul>
+          </div>
+        </div>
+        

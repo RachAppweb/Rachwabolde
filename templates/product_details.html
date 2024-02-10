@@ -1,0 +1,78 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+{% endblock%}
+{% block title%}
+  تفاصيل المنتج 
+{% endblock%}
+{% block content%}
+
+
+<!-- ---------------------------------------------- -->
+{% include 'includes/alerts.html'%}
+<div id="juty" style="margin-top: 9%;">
+    <div class="row mb-5" id="rower" style="padding: 90px 0px;" >
+      
+      <div class="col-md-6 " style="text-align: center;" >
+        <div class="mainImage">
+        <img id="prodimg"  src="{{single_product.image.url}}" alt="">
+      </div>
+      
+      </div>
+     <div class="col-md-6 container mt-20" id="kolchi">
+     
+        
+        
+        <div class="container">
+          <h3 class="text-primary" id="htitlepro " style="font-family: Tajawal;">{{single_product.prouduct_name}}</h3>
+          <p style="font-family: Tajawal;">
+            {{single_product.description}}
+         </p>
+         <h5 id="hprice">{{single_product.price}}$</h5>
+         
+         <hr id="hrr">
+         
+         {% if product_gallery%}
+         <ul class="thumb" id="centring">
+           <li>
+             <a id="onlod" href="{{ single_product.image.url }}" target="mainImage"><img src="{{ single_product.image.url }}" alt="Product Image"></a>
+             {% for i in product_gallery %}
+             <a href="{{i.images.url}}" target="mainImage"><img src="{{i.images.url}}" alt="Product Image"></a>
+             {% endfor %}
+           </li>
+         </ul>
+         {% endif%}
+        
+        <hr id="hrr">
+
+        <div>
+          {% if single_product.stock <= 0 %}
+          <h3 class="text-danger"style="font-family: Tajawal;"> هذا المنتج لم يعد متوفر </h3>
+          {% else%}
+          
+          <a href="{% url 'add_to_card' single_product.id %}" class="btn btn-outline-primary mt-2" type="submit"> <i class="fas fa-shopping-cart"></i> <span style="font-family: Tajawal;">أضف إلى السلة</span> </a>
+
+         
+           
+         
+          {% endif%}
+        </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+<!-- -------------------------------------------------------------- -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('.thumb a').click(function(e){ 
+			e.preventDefault();
+			$('.mainImage img').attr('src', $(this).attr("href"));
+		})
+	})
+  
+</script>
+{% include 'includes/fotter.html'%}
+{% endblock%} 

@@ -1,0 +1,73 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+<link rel="stylesheet" href="{% static 'css/stayling.css' %}" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% endblock%}
+{% block title%}
+ الصفحة الشخصية
+{% endblock%}
+{% block content%}
+<div id="divo">
+    <input type="checkbox" id="mobile-menu" />
+    {% include 'includes/sidebar.html'%}
+    <label for="mobile-menu" id="mmenu"style="    height: fit-content;">
+      <i class="fa fa-bars"></i>
+      <i class="fa fa-times" style="    margin-top: -28px !important;margin-left: -14px !important;border: 3px solid black;border-radius: 12px;padding: 5px;"></i>
+    </label>
+    <div class="content">
+      <h2 id="heading"style="font-family:Tajawal;"> رقم الطلب والكمية </h2>
+      <div class="categories">
+        <div class="category">
+          <h3 style="font-family:Tajawal;">  مجموع الطلبات</h3>
+          <span id="ordercount"> <b>{{ordercount}}</b></span> 
+        </div>
+        <div class="category">
+          <h3 style="font-family:Tajawal;"> كمية السلة </h3>
+          <span id="ordercount"> <b>{{cart_count}}</b></span> 
+        </div>
+      </div>
+
+      <h2 id="heading" style="font-family:Tajawal;">  معلومات الحساب </h2>
+      <div class="card" id="cardtable">
+        
+        <table class="table caption-top">
+          <!-- <caption>Info</caption> -->
+          
+          <tbody>
+            <tr>
+              <th scope="row">
+                <td>
+                  <span style="display: none;">nothing</span>
+                </td>
+              </th>
+            </tr>
+            <tr>
+              <th scope="row" style="font-family:Tajawal;"> الإسم و الصورة</th>
+              
+              <td><span> {% if profil_form.profil_picture%}<img src="{{profil_form.profil_picture.url}}" alt="" height="40" width="40" class="rounded">{%else%}<img src="{% static 'img/undraw_profile.svg'%}" alt="" height="40" width="40" class="rounded">{% endif%}</span> {{user.fullname}}</td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-family:Tajawal;">  البريد الإلكتروني</th>
+              
+              <td>{{user.email}}</td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-family:Tajawal;"> رقم الهاتف </th>
+              
+              <td>{{user.phone_number}}</td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-family:Tajawal;">تاريخ الإنضمام</th>
+              
+              <td>{{user.date_joined}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     
+    </div>
+</div>
+{% include 'includes/fotter.html'%}
+{% endblock%}

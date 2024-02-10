@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+{% endblock%}
+{% block title%}
+  Registration
+{% endblock%}
+{% block content%}
+ 
+
+<div class="alert alert-info" role="alert" id="go_acctivate " style="margin-bottom: 35px !important; direction: rtl;   margin: auto;margin-top:35px;max-width:500px">
+    <h4 class="alert-heading"style="font-family: Tajawal;">عمل جيد !</h4>
+    <h5 class="alert-heading"><b style="font-family: Tajawal;">{{user.first_name}} مرحبا </b></h5>
+    <h6>   لقد تم تحويلك إلى هذه الصفحة للتأكد ما إذا كنت أنت مالك البريد الإلكتروني  أم لا وإذا لم تقم بإدخال أي معلومات خاصة بهذا البريد أو لست أنت, يمكنك تجاهل هذه الرسالة </h6>
+    <hr>
+    <p class="mb-0">إذا كنت أنت , المرجو تفقد بريدك الإلكتروني أسفله لأننا قد أرسلنا رسالة تفعيل  لتقوم بتفعيل حسابك الخاص  و شكرا</p>
+        <span  id="basic-addon1"><i class="fas fa-at" ></i>
+          <a > {{user.email}}</a>
+        </span>
+  </div>
+  {% include 'includes/fotter.html'%}
+{% endblock%}

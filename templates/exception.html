@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+{% endblock%}
+{% block title%}
+  404
+{% endblock%}
+{% block content%}
+
+
+<strong>you may have not the permession to navigate this url or you request a non existe page</strong>
+<h6>try to login or request an other page again</h6>
+
+{% include 'includes/fotter.html'%}
+{% endblock%}

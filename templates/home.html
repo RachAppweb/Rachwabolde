@@ -1,0 +1,115 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+<link rel="stylesheet" href="{% static 'css/homm.css' %}">
+{% endblock%}
+{% block title%}
+   القائمة 
+{% endblock%}
+{% block content%}
+
+
+
+<div id="loplop">
+  <img id="rachwabimg" src="{% static 'img/zro9ya-min.png'%}" alt=""> 
+
+    <div id="rachwabold" style="display: flex;" >
+      <div id="alles1"style="width: 50% !important;"> 
+        <p id="para1"style="font-family: Tajawal;">ذوقك الرفيع في سلتك </p>
+        <p id="para2"style="font-family: Tajawal;">تألق بملابسنا</p>
+        <a id="btnes" class="bg-light " href="{% url 'store'%}" style="font-family: Tajawal;text-decoration:none">بدء التسوق</a>
+      </div>
+      <div class="alles2" style="width: 50% !important;">
+        <img id="imglogo" src="{%static 'img/rachwaboldicon-min.png'%}" alt="">
+      </div>
+    
+    </div>
+    
+    <div class="rachwabold2 mb-5" style="display: flex;">
+      <div id="titleandpara" style="width: 50%;" >
+        <h2 id="titleofpara">RachwAbOld</h2>
+        <p id="paraoftitle" style="font-family: Tajawal;">   
+         
+         
+          ،   هو موقع  يجعل تجربة التسوق أكثر إثارة ومتعة.  باستكشاف مجموعة متنوعة من القطع المميزة المستعملة التي تناسب أسلوبك الشخصي وتعكس ذوقك الفريد.  أيضا ستجد ملابس أنيقة ومواكبة للموضة، مما يضيف لمسة فريدة إلى مظهرك الشخصي .
+          
+          بالإضافة إلى ذلك، يوفر الموقع ميزة البحث المتقدمة وتصنيفات مفصلة، مما يسهل عليك العثور على الملابس التي تبحث عنها بسرعة وسهولة.  مما يوفر لك مرونة كبيرة في اختيارك.
+          
+           ويمكنك الحصول  أيضا على قطع مميزة بأسعار أكثر تنافسية، مما يوفر لك قيمة ممتازة لأموالك.
+          
+          استعد لتحقيق أسلوبك الشخصي الفريد وتجربة تسوق ممتعة عبر التسجيل في موقعنا
+           واستمتع بتصفح الملابس المستعملة عالية الجودة ثم ابحث عن القطع المميزة التي ستضيف لمسة استثنائية إلى مجموعة ملابسك  </p>
+      </div>
+      <div id="imgofpagetwo"style="width: 50%;">
+        <img id="imgofpage1" src="{%static 'img/onlineshopping-min.png'%}" alt="">
+      </div>
+    </div>
+    
+    <div id="ourservices" class="mt-5">
+      <h1 style="text-align: center; color: rgb(18, 101, 156);margin-bottom: 59px;margin-top: 80px;font-family: Tajawal;">خدماتنا</h1>
+      <div id="cardes"style="">
+        
+        <div id="cardofservices"style="width: 33%;">
+          <div class="p-2 ">
+            <i id="icones" class="xl p-2"><img src="{%static 'img/user.png'%}" alt="" width="40" height="40"></i>
+            <h5 id="h5ofservices"style="font-family: Tajawal;">الصفحة الشخصية</h5>
+            <p id="pofservices" style="font-family: Tajawal;">   توفير  صفحة شخصية لكم حيث يمكنكم إدارة طلباتكم وتحديث معلومات الملف الشخصي. يعزز هذا المركز المريح تجربة المستخدم ويجعل من السهل عليكم الوصول إلى المعلومات ذات الصلة</p>
+          </div>
+        </div>
+
+        <div id="cardofservices"style="width: 33%;">
+          <div class="p-2">
+            <i id="icones"class="xl p-2"><img src="{%static 'img/email.png'%}" alt="" width="40" height="40"></i>
+            <h5 id="h5ofservices"style="font-family: Tajawal;">حالة الطلب</h5>
+            <p id="pofservices"style="font-family: Tajawal;">إرسال إشعارات بالبريد الإلكتروني لكم للحفاظ على علمكم بحالة طلباتكم، بما في ذلك تأكيد الشحن وتحديثات التسليم </p>
+          </div>
+        </div>
+        <div id="cardofservices"style="width: 33%;">
+          <div class="p-2">
+            <i id="icones" class="xl p-2"><img src="{%static 'img/chat.png'%}" alt="" width="40" height="40"></i>
+            <h5 id="h5ofservices"style="font-family: Tajawal;"> قسم التعليقات والتقيم</h5>
+            <p id="pofservices"style="font-family: Tajawal;">  حيث يمكن لكم تقديم طلبات تخصيص أو ملاحظات إضافية حول طلباتكم للتواصل بشأن المتطلبات الخاصة أو التفضيلات المتعلقة بمشترياتكم  أيضا لتحفيزنا في تقديم الأ فضل دائما</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- --------rating stars -->
+<div id="staro">
+    <span class="float-md-left" id="spanstar ">
+      <i class="fa fa-star {% if averagereview.rating__avg > 64 %}checked{% endif %}" style="float: right;font-size: xx-large;" aria-hidden="true"></i>
+      <i class="fa fa-star {% if averagereview.rating__avg > 32 %}checked{% endif %}" style="float: right;font-size: xx-large;" aria-hidden="true"></i>
+      <i class="fa fa-star {% if averagereview.rating__avg > 16 %}checked{% endif %}" style="float: right;font-size: xx-large;" aria-hidden="true"></i>
+      <i class="fa fa-star {% if averagereview.rating__avg > 8 %}checked{% endif %}" style="float: right;font-size: xx-large;" aria-hidden="true"></i>
+      <i class="fa fa-star {% if averagereview.rating__avg > 4 %}checked{% endif %}" style="float: right;font-size: xx-large;" aria-hidden="true"></i>
+      {% if averagereview.rating__avg%}
+      <p id="ag"style="font-size: xx-large;">{{ averagereview.rating__avg }}</p>
+      {% else%}
+      <p id="ag"style="font-size: xx-large;">0</p>
+      {% endif%}
+    </span>
+  </div>
+    
+
+    <!--//---------rating stars -->
+    <div id="lastsection"style="width: 50%;">
+    
+      <div class="p-2 ">
+        <p id="pofservices" style="font-family: Tajawal;">  
+        إذا أردت أن تعرف أ كثر كيف يعمل موقعنا أو كيف تنشئ حسابك او شيء من هذا القبيل إضغط على <a href="{% url 'usage'%}" style="text-decoration:none;color:rgb(69, 69, 212) ;font-family: Tajawal;">كيفية الإستعمال </a> أو في حالة أردت أن تبدأ التسوق إضغط على الزر أسفله
+      </p>
+      </div>
+    </div>
+<div id="goto">  
+<a  id="gotostor" class="bg-primary " href="{% url 'store'%}" style="font-family: Tajawal;text-decoration:none; color:white">بدء التسوق</a>
+</div>  
+
+</div>
+
+
+{% include 'includes/fotter.html'%}
+
+
+
+{% endblock%}

@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+{% endblock%}
+{% block title%}
+   طريقة الإستعمال
+{% endblock%}
+{% block content%}
+{%for usage in usages%}
+  <div class="card" id="cardusage">
+    <div class="card-body">
+      <h5 class="card-title" style="font-family: Tajawal;font-size: xx-large;">{{usage.title}}</h5>
+      <p class="card-text" style="font-family: Tajawal;">{{usage.description}}</p>
+      <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+    </div>
+    <img src="{{usage.screen.url}}" class="card-img-bottom" alt="..." width="600px" style="margin-bottom: 17px;">
+  </div>
+{% endfor%}
+{% include 'includes/fotter.html'%}
+{% endblock%}

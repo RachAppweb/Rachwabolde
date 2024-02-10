@@ -1,0 +1,131 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+{% endblock%}
+{% block title%}
+  عملية دفع ناجحة
+{% endblock%}
+{% block content%}
+<!-- //\\ -->
+
+  
+
+
+<div class="invoice " style="margin: 10px;">
+    <div class="parent-invoice p-5"  style="padding: 10px; margin: 5% auto; background-color: #ddd; max-width: 800px; border: 1px solid rgb(221, 207, 207);border-radius: 2px;">
+    <div class="logo-some" style=" display: flex; justify-content: space-between;">
+        <div class="logo" >
+            <a id="consome"><img src="{%static 'img/RachwAbOld-min.png'%}" alt="" style="height: 70px;width: 170px;margin-bottom:7px;" ></a>
+        </div>
+        <div class="some" >
+            <h1 id="consome"style="font-family: Tajawal">فاتورة</h1>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="title-invoi" style=" display: flex; justify-content: space-between;">
+        <div class="title">
+                <b id="bold" style="font-family: Tajawal">دفع ل:</b>
+                <p id="para" style="margin-bottom: -2px;">{{order.fullname}}</p>
+                <p id="para" style="margin-bottom: -2px;">{{order.fulladdress}}</p>
+                <p id="para" style="margin-bottom: -2px;">{{order.city}}</p>
+                <p id="para" style="margin-bottom: -2px;">{{order.state}}</p>
+
+                <p id="para" style="margin-bottom: -2px;">{{order.phone_number}}</p>
+                <p id="para" style="margin-bottom: -2px;">{{order.email}}</p>
+        </div>
+        <div class="invoi">
+            <p id="para" style="margin-bottom: -2px;font-family: Tajawal">رقم الفاتورة: {{order_number}} </p>
+            <p id="para" style="margin-bottom: -2px;">{{order.created_at}}</p>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div>
+      <div class="tabaall" style="width: 100%; margin: 20px auto;">
+        <table id="successtabel" style="border-top: 1px solid black;border-bottom: none ;" class="table caption-top"   >
+          <!-- <caption>List of users</caption> -->
+          <thead>
+            <tr style="text-align: center;">
+              <th scope="col"style="font-family: Tajawal">المنتج</th>
+              <th scope="col"style="font-family: Tajawal">الكمية</th>
+              <th scope="col"style="font-family: Tajawal">الثمن</th>
+              <!-- <th scope="col">Total</th> -->
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in order_product%}
+            <tr>
+              <td class="text-dark" style="text-align: center;">{{item.product.prouduct_name}}</td>
+              <td class="text-dark" style="text-align: center;"> {{item.quantity}} </td>
+              <td class="text-dark" style="text-align: center;">{{item.product_price}}dh </td>
+              <!-- <td class="text-dark" style="text-align: center;">500 dh </td> -->
+            </tr>
+            {% endfor %}
+           </tbody>
+          
+         
+          
+          <tbody id="bodyyy"> 
+            <tr>
+              <td style="border-bottom: none;"></td>
+              <td  id="is" style="border-bottom:none;border-right:1px solid black" ></td>
+              <td class="text-dark" style="text-align: center;"><b style="font-family: Tajawal"> {{subtotal}} dh: السعر الكلي    </b></td>
+            </tr>
+            <tr>
+              <td style="border-bottom: none;"></td>
+
+              <td  style="border-bottom:none;border-right:1px solid black" ></td>
+              <td class="text-dark" style="text-align: center;"><b style="font-family: Tajawal"> {{deliver}} dh:  التوصيل  </b></td>
+            </tr>
+            <tr>
+              <td style="border-bottom: none;"></td>
+
+              <td  style="border-bottom:none;border-right:1px solid black" ></td>
+              <td class="text-dark" style="text-align: center;"><b style="font-family: Tajawal"> {{finaltotal}} dh:  المجموع النهائي </b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+      <div>
+        <!-- <h4 style="margin: 10% 50px;">
+          Thank you !
+        </h4> -->
+      </div>
+      <div style=" display: flex; justify-content: space-between; margin-bottom: 20px;">
+        <div >
+          <b id="bold" style="font-family: Tajawal">معلومات الدفع</b>
+          <p id="para" style="margin-bottom: -2px;font-family: Tajawal"> {{payment.payment_method}}:  وسيلة الدفع </p>
+          <p id="para" style="margin-bottom: -2px;font-family: Tajawal"> {{payment.amount_paid}}dh : المبلغ المدفوع  </p>
+          <p id="para" style="margin-bottom: -2px;font-family: Tajawal"> {{transId}} : رقم المعاملة </p>
+          
+          <p id="para" style="margin-bottom: -2px;font-family: Tajawal">  {{payment.status}}:  حالة الدفع </p>
+        </div>
+        <div style="float: right; margin-left: 80px;">
+          <b id="bold">شكرا لك ! </b>
+          <p id="para" style="margin-bottom: -2px;font-family: Tajawal">نتمنى ان تكون إستمتعت بالتعامل معنا</p>
+          
+          
+
+        </div>
+      </div>
+</div>
+</div>
+
+<!-- //\\ -->
+
+{% include 'includes/fotter.html'%}
+<script>
+$(document).ready(function () {
+  setTimeout(function () {
+    // const modal = document.getElementById("commentalert");
+    //modal.style.visibility = "visible";
+    $("#commentalert").modal("show");
+  }, 12000);
+});
+</script>
+{% endblock%}

@@ -1,0 +1,111 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+{% endblock%}
+{% block title%}
+  Registration
+{% endblock%}
+{% block content%}
+
+<div class="card mx-auto " style="margin-top: 27px;margin-bottom: 27px; max-width:500px; box-shadow: 1px 1px 5px 1px rgb(175,168,168);" >
+  <div class="card-body" >
+   
+    <form action="{% url 'register' %}" method="POST">
+      {% csrf_token%}
+      <div >
+        <label for="recipient-name" class="col-form-label">الإسم الأول</label>
+        <!-- <input type="text" class="form-control" name="first_name" id="first_name"> -->
+       {{form.first_name}}
+      </div>
+      <div >
+        <label for="recipient-name" class="col-form-label">الإسم الثاني</label>
+        <!-- <input type="text" class="form-control" name="last_name" id="last_name"> -->
+        {{form.last_name}}
+      </div>
+      <div >
+        <label for="recipient-name" class="col-form-label">البريد الإلكتروني</label>
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-at" style="margin-right: 1px;"></i> 
+  
+          <!-- <input type="text" class="form-control" name="email" id="email"> -->
+          {{form.email}}
+        </span>
+       
+      </div>
+      <div >
+        
+        <label for="recipient-name" class="col-form-label">رقم الهاتف</label>
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"style="margin-right: 1px;"></i> 
+  
+          <!-- <input type="text" class="form-control" name="phone_number" id="phone_number"> -->
+          {{form.phone_number}}
+        </span>
+        
+      </div>
+      <div >
+        <label for="recipient-name" class="col-form-label">إسم المستخدم</label>
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"style="margin-right: 1px;"></i> 
+             {{form.username}}
+        <!-- <input type="text" class="form-control" name="username" id="username"> -->
+        </span>
+      </div>
+      <div >
+        <label for="message-text" class="col-form-label">كلمة السر</label>
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"style="margin-right: 1px;"></i> 
+       {{form.password}}
+        <!-- <input type="password" class="form-control" name="password" id="password"> -->
+        
+        </span>
+      </div>
+      <div>
+        <label for="message-text" class="col-form-label">تأكيد كلمة السر</label>
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"style="margin-right: 1px;"></i> 
+        {{form.confirm_password}}
+        <!-- <input type="password" class="form-control" name="confirm_password" id="password"> -->
+        </span>
+      </div>
+      <!-- <div >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+        <button type="submit" class="btn btn-primary" >Log in</button>
+      </div> -->
+      <label for="message-text" class="col-form-label">التحقق من أنك إنسان</label>
+      <span class="input-group-text" id="basic-addon1"></i>
+      {{form.captcha}}
+      </span>
+    <button type="submit" class="btn btn-primary text-center" style="width:fit-content;width: -webkit-fill-available;margin-top: 15px;">Register</button>
+    {{form.email.errors}}
+    {{form.captcha.errors}}
+    {{form.non_field_errors}}
+    </form>
+  </div>
+</div>
+<div class="text-center mb-3">
+  Already have an account <a href="#"  data-bs-toggle="modal" data-bs-target="#LoginModale" data-bs-whatever="@fat" >Login</a>
+</div>
+
+
+{% include 'includes/fotter.html'%}
+<script>
+  $(function() {
+    // Add refresh button after field (this can be done in the template as well)
+    $('img.captcha').after(
+            $('<a href="#void" class="captcha-refresh"><i class="fa-solid fa-rotate" style="margin-left: 10px;"></i></a>')
+            )
+
+    // Click-handler for the refresh-link
+    $('.captcha-refresh').click(function(){
+        var $form = $(this).parents('form');
+        var url = location.protocol + "//" + window.location.hostname + ":"
+                  + location.port + "/captcha/refresh/";
+
+        // Make the AJAX-call
+        $.getJSON(url, {}, function(json) {
+            $form.find('input[name="captcha_0"]').val(json.key);
+            $form.find('img.captcha').attr('src', json.image_url);
+        });
+
+        return false;
+    });
+});
+</script>
+{% endblock%}

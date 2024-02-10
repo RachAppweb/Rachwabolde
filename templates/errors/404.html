@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/except.css' %}">
+{% endblock%}
+{% block title%}
+   لا توجد هذه الصفحة
+{% endblock%}
+{% block content%}
+
+<div id="con">
+<span id="bjoj"><b id="textttt" >404</b><img id="rotate" src="{% static 'img/rachwaboldicon-min.png'%}" alt="" width="80" height="80"></span>
+<div class="card" id="cwird">
+<p style="font-weight: bolder;font-family:Tajwawl;">
+    نأسف، ولكن الصفحة التي تبحث عنها غير موجودة هنا. لقد واجهت رسالة الخطأ 404، وهي تشير إلى أن الصفحة التي تحاول الوصول إليها غير متاحة في الموقع.
+
+    قد يكون هناك عدة أسباب لحدوث ذلك. قد يكون الرابط الذي اتبعته غير صحيح أو قد تمت إزالة الصفحة أو نقلها إلى مكان آخر. إذا كنت قد وصلت إلى هذه الصفحة عن طريق النقر على رابط داخل الموقع، فقد يكون هناك خطأ في الرابط.
+    
+    نعتذر عن أي إزعاج قد تسببه لك هذه الصفحة الغير موجودة. يمكنك المحاولة العودة إلى الصفحة السابقة عن طريق النقر على زر "العودة" في المتصفح الخاص بك أو الضغط على زر الرجوع إلى الصفحة الرئيسية أسفله وشكرا    
+</p>
+<a href="{% url 'home'%}"style="font-weight: bolder;font-family:Tajwawl;max-width: fit-content;margin: auto;" class="btn btn-primary ">  العودة إلى الصفحة الرئيسية</a>
+
+</div>
+<!-- <h5 id="texttt">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolorem dicta vitae, deserunt similique omnis aliquam quisquam cupiditate illum maiores dolor si</h5> -->
+</div>
+
+
+{% include 'includes/fotter.html'%}
+{% endblock %}
